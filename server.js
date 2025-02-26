@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public')); // Serve static files from 'public' directory
 
-// New POST endpoint
+//POST endpoints
 app.post('/api/new_message', async (req, res) => {
   try {
     
@@ -41,10 +41,33 @@ app.post('/api/new_message', async (req, res) => {
   }
 });
 
-// New GET endpoint
+app.post('/api/new_employee', async (req, res) => {
+  try {
+    
+    // Call the Supabase Edge Function for employees
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/employees`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      },
+      body: JSON.stringify(req.body)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Supabase returned ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('GET request error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//GET endpoints
 app.get('/api/messages', async (req, res) => {
   try {
-
     // Call the Supabase Edge Function for messages
     const response = await fetch(`${SUPABASE_URL}/functions/v1/messages`, {
       method: 'GET',
@@ -57,6 +80,28 @@ app.get('/api/messages', async (req, res) => {
       throw new Error(`Supabase returned ${response.status}: ${response.statusText}`);
     }
     
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('GET request error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/employees', async (req, res) => {
+  try {
+    // Call the Supabase Edge Function for employees
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/employees`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Supabase returned ${response.status}: ${response.statusText}`);
+    }
+
     const data = await response.json();
     res.json(data);
   } catch (error) {
