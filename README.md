@@ -18,7 +18,7 @@ The project uses Supabase as the database provider:
 The [companion backend app](https://github.com/jdowie-ada/apa1-supa-task-backend) will be used to manage the database 
 
 ## Testing
-This is an open-ended project, and you may choose your preferred testing approach:
+This is an open-ended project,   and you may choose your preferred testing approach:
 - Manual testing through the application interface
 - Leveraging Supabase's built-in Row Level Security (RLS) policy testing
 - Writing custom unit or integration tests with a framework of your choice (Jest, Mocha, etc.)
