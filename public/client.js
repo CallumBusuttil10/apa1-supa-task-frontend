@@ -70,17 +70,18 @@ const postMessage = async () => {
   }
 };
 
-const postEmployee = async () => {
+const postEmployee = async (firstName, lastName, jobTitle, email) => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Loading...";
 
   try {
+    // Make sure to send the data dynamically from the form
     const response = await fetch(`/api/new_employee`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: "If you can see this POST is working :)" }),
+      body: JSON.stringify({ first_name: firstName, last_name: lastName, job_title: jobTitle, email: email }),
     });
 
     if (!response.ok) {
@@ -95,5 +96,7 @@ const postEmployee = async () => {
 };
 
 document.getElementById("callFunction").addEventListener("click", getEmployees);
+
+
 
 // To begin try adding another button to use the postMessage function

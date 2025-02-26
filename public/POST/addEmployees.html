@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Employee</title>
+    <link rel="stylesheet" href="post-styles.css" />
+  </head>
+  <body>
+
+    <div class="form-container">
+        <h1 class="form-header">Add New Employee</h1>
+        <form id="employeeForm" class="employee-form">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" id="first_name" name="first_name" class="form-input" placeholder="Enter first name" required>
+    
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" id="last_name" name="last_name" class="form-input" placeholder="Enter last name" required>
+    
+          <label for="job_title" class="form-label">Job Title</label>
+          <input type="text" id="job_title" name="job_title" class="form-input" placeholder="Enter job title" required>
+    
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="Enter email" required>
+    
+          <button type="submit" class="form-button">Add Employee</button>
+        </form>
+    </div>
+    
+    <!-- Home button to navigate back to the home page -->
+    <div class="home-button-container form-container">
+        <a href="../index.html" class="navigate-button">
+          <button class="form-button">Return to the Home Page</button>
+        </a>
+    </div>
+
+    <!-- Link to the client.js file (relative path) -->
+    <script src="../client.js"></script> <!-- Adjusted path assuming it's one folder up -->
+  </body>
+</html>
