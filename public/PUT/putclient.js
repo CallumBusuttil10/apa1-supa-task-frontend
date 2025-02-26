@@ -5,13 +5,15 @@ const urlParams = new URLSearchParams(window.location.search);
         document.getElementById('editEmployeeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = {
-                id: employeeId,
+                id: document.getElementById('employeeId').value,
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
                 jobTitle: document.getElementById('jobTitle').value,
                 email: document.getElementById('email').value
             };
             
+            console.log('Sending data:', formData);
+
             await updateEmployee(
                 formData.id,
                 formData.firstName,
@@ -19,9 +21,7 @@ const urlParams = new URLSearchParams(window.location.search);
                 formData.jobTitle,
                 formData.email
             );
-        });
-        
-        async function fetchEmployeeDetails(id) {
+        });        async function fetchEmployeeDetails(id) {
             try {
                 const response = await fetch(`/api/employees`, {
                     method: "GET",
@@ -72,32 +72,30 @@ const urlParams = new URLSearchParams(window.location.search);
             );
         });
 
-        const updateEmployee = async (id, firstName, lastName, jobTitle, email) => {
-            const resultElement = document.getElementById("result");
-            resultElement.textContent = "Updating Employee...";
-          
-            try {
+      const updateEmployee = async (id, firstName, lastName, jobTitle, email) => {
+          const resultElement = document.getElementById("result");
+          resultElement.textContent = "Updating Employee...";
+
+          try {
               const response = await fetch(`/api/employees`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  id: id,
-                  first_name: firstName,
-                  last_name: lastName,
-                  job_title: jobTitle,
-                  email: email
-                }),
+                  method: "PUT",
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                      id: parseInt(id),
+                      first_name: firstName,
+                      last_name: lastName,
+                      job_title: jobTitle,
+                      email: email
+                  }),
               });
-          
+
               if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
+                  throw new Error(`Error: ${response.status}`);
               }
-          
+
               const data = await response.json();
               resultElement.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-            } catch (error) {
-              resultElement.textContent = `Error: ${error.message}`;
-            }
-          };
+              window.location.href = '../index.html';
+              window.location.href = '../index.html';          } catch (error) {              resultElement.textContent = `Error: ${error.message}`;          }          };
