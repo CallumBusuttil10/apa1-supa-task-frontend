@@ -24,7 +24,7 @@ button {
 
 /* Private class-based styling for the GET results section */
 .get-container {
-  max-width: 500px;
+  max-width: 90vw; /* Changed from fixed 500px to 90% of viewport width */
   margin: 50px auto;
   padding: 20px;
   background-color: white;
@@ -86,4 +86,49 @@ button {
 
 .add-employees-button-container .form-button:hover {
   background-color: #0b7dda;
+}
+
+.employee-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.employee-card {
+  flex: 1 1 300px;
+  max-width: 400px;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.employee-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.employee-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.employee-card .job-title {
+  color: #666;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.employee-card .email {
+  color: #2196F3;
+  margin: 5px 0;
+}
+
+.get-result {
+  padding: 0;
+  background: none;
+  border: none;
 }

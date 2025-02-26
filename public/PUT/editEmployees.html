@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="../POST/post-styles.css" />
+  </head>
+  <body>
+    <div class="form-container">
+        <h1 class="form-header">Edit Employee</h1>
+        <form id="editEmployeeForm" class="employee-form">
+          <input type="hidden" id="employeeId">
+          
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Enter first name" required>
+    
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Enter last name" required>
+    
+          <label for="jobTitle" class="form-label">Job Title</label>
+          <input type="text" id="jobTitle" name="jobTitle" class="form-input" placeholder="Enter job title" required>
+    
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="Enter email" required>
+    
+          <button type="submit" class="form-button">Update Employee</button>
+        </form>
+    </div>
+    
+    <div class="home-button-container form-container">
+        <a href="../index.html" class="navigate-button">
+          <button class="form-button">Return to the Home Page</button>
+        </a>
+    </div>
+    <script src="putclient.js"></script>
+  </body>
+</html>
