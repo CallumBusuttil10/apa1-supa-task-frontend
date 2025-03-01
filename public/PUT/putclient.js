@@ -4,8 +4,6 @@ const getEmployeeIdFromUrl = () => {
 };
 
 const loadEmployeeData = async (employeeId) => {
-    const resultElement = document.getElementById("result");
-
     try {
         const response = await fetch(`/api/employees/${employeeId}`, {
             method: "GET",
@@ -27,14 +25,13 @@ const loadEmployeeData = async (employeeId) => {
         document.getElementById('email').value = employee.email;
 
     } catch (error) {
-        resultElement.textContent = `Error: ${error.message}`;
+        console.error(error);
     }
 };
 
 const updateEmployee = async (event) => {
     event.preventDefault();
     const employeeId = getEmployeeIdFromUrl();
-    const resultElement = document.getElementById("result");
 
     const updatedEmployee = {
         id: employeeId,
@@ -58,10 +55,14 @@ const updateEmployee = async (event) => {
         }
 
         const result = await response.json();
-        resultElement.textContent = "Employee updated successfully";
+
+        const resultDiv = document.createElement('div');
+        resultDiv.id = 'result';
+        resultDiv.textContent = "Employee updated successfully";
+        document.querySelector('.form-container').appendChild(resultDiv);
 
     } catch (error) {
-        resultElement.textContent = `Error updating employee: ${error.message}`;
+        console.error(`Error updating employee: ${error.message}`);
     }
 };
 

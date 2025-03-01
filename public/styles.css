@@ -1,6 +1,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  max-width: 800px;
+  max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
 }
@@ -12,14 +12,18 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  align-self: baseline;
 }
 
-#result {
+.get-result {
   margin-top: 20px;
   padding: 15px;
   border-radius: 4px;
   border: 1px solid #ddd;
   background: #f9f9f9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
 }
 
 /* Private class-based styling for the GET results section */
@@ -54,19 +58,6 @@ button {
   background-color: #45a049;
 }
 
-.get-result {
-  padding: 20px;
-  font-size: 16px;
-  color: #555;
-  background-color: #f4f4f4;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
 /* Go to Add Employee Button Container */
 .add-employees-button-container {
@@ -87,48 +78,95 @@ button {
 .add-employees-button-container .form-button:hover {
   background-color: #0b7dda;
 }
-
 .employee-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  gap: 32px;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .employee-card {
-  flex: 1 1 300px;
-  max-width: 400px;
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  flex: 0 0 200px;
 }
-
-.employee-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+.employee-card button {
+  padding: 10px 15px;
+  background: #3ecf8e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: baseline;
 }
-
+.employee-card:hover {  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  background-color: lightgray;
+}
 
 .employee-card h3 {
-  margin: 0 0 10px 0;
-  color: #333;
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
 }
 
 .employee-card .job-title {
-  color: #666;
+  color: #7f8c8d;
   font-weight: 500;
-  margin: 5px 0;
+  margin: 8px 0;
+  font-size: 1.1rem;
 }
 
 .employee-card .email {
-  color: #2196F3;
-  margin: 5px 0;
+  color: #3498db;
+  margin: 8px 0;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.get-result {
-  padding: 0;
-  background: none;
-  border: none;
+.employee-card .email:hover {
+  text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .employee-grid {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .employee-card {
+    padding: 16px;
+  }
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-button {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+

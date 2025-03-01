@@ -134,3 +134,27 @@ app.put('/api/employees/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+//delete endpoint
+app.delete('/api/employees/:id', async (req, res) => {
+  try {
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/employees/${req.params.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Supabase returned ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('DELETE request error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
