@@ -1,3 +1,4 @@
+let allEmployees = [];
 const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Fetching Employees...";
