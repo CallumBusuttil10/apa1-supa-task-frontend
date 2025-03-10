@@ -1,26 +1,3 @@
-// Writing a function to communicate with our local server
-
-const deleteEmployee = async (id) => {
-  try {
-    const response = await fetch(`/api/employees/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    // Refresh the employee list after successful deletion
-    await getEmployees();
-  } catch (error) {
-    console.error('Delete failed:', error);
-    alert(`Failed to delete employee: ${error.message}`);
-  }
-};
-
 const getEmployees = async () => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Fetching Employees...";
@@ -38,8 +15,6 @@ const getEmployees = async () => {
     }
 
     const data = await response.json();
-    
-    //  employee cards with both edit and delete buttons
     const employeeCards = data.map(employee => `
       <div class="employee-card">
         <h3>${employee.first_name} ${employee.last_name}</h3>
@@ -60,7 +35,33 @@ const getEmployees = async () => {
   }
 };
 
+const deleteEmployee = async (id) => {
+  try {
+    const response = await fetch(`/api/employees/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    alert('Employee deleted successfully');
+    await getEmployees();
+  } catch (error) {
+    console.error('Delete failed:', error);
+    alert(`Failed to delete employee: ${error.message}`);
+  }
+};
+
+document.getElementById("callFunction").addEventListener("click", getEmployees);
+
+
+
+
+
+//Josh's Example REMOVE BEFORE SUBMITTING
 const getMessages = async () => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Loading...";
@@ -84,6 +85,3 @@ const getMessages = async () => {
   }
 };
 
-document.getElementById("callFunction").addEventListener("click", getEmployees);
-
-// To begin try adding another button to use the postMessage function
