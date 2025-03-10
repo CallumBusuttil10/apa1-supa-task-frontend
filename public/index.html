@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Portal</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="get-container">
-      <h1 class="get-header">Welcome to the Employee Portal!</h1>
-      <button id="callFunction" class="get-button">Show Employees</button>
+</head>
 
-      <div class="search-container">
+<body>
+<div class="get-container">
+    <h1 class="get-header">Welcome to the Employee Portal!</h1>
+    <button id="callFunction" class="get-button">Show Employees</button>
+
+    <div class="search-container">
         <label for="nameSearch">Search by name:</label>
         <input type="text" id="nameSearch" placeholder="Enter employee name" class="search-input">
-      <label for="teams">Filter by team:</label>
-      <select name="teams" id="teams">
-        <option value="All Teams">All Teams</option>
-        <option value="Commercial">Commercial</option>
-        <option value="Front End Development">Front End Development</option>
-        <option value="Back End Development">Back End Development</option>
-      </select>
-      </div>
-
-
-      <div id="result" class="get-result">Results will appear here...</div>
-
-      <a href="POST/addEmployees.html">
-        <button class="add-button" style="margin-top: 30px">Go to Add Employees</button>
-      </a>
+        <label for="teams">Filter by team:</label>
+        <select name="teams" id="teams">
+            <option value="All Teams">All Teams</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Front End Development">Front End Development</option>
+            <option value="Back End Development">Back End Development</option>
+        </select>
     </div>
-    <script src="getclient.js"></script>
-  </body>
+
+    <div id="result" class="get-result">Results will appear here...</div>
+
+    <a href="POST/addEmployees.html">
+        <button class="add-button" style="margin-top: 30px">Go to Add Employees</button>
+    </a>
+</div>
+<script src="getclient.js"></script>
+</body>
 </html>
