@@ -1,4 +1,4 @@
-const getEmployees = async () => {
+const getEmployees = async (teamFilter = "All Teams") => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Fetching Employees...";
 
@@ -15,7 +15,18 @@ const getEmployees = async () => {
     }
 
     const data = await response.json();
-    const employeeCards = data.map(employee => `
+
+    // Filter employees by team if a specific team is selected
+    const filteredEmployees = teamFilter === "All Teams"
+      ? data
+      : data.filter(employee => employee.team_name === teamFilter);
+
+    if (filteredEmployees.length === 0) {
+      resultElement.innerHTML = `<p>No employees found in the ${teamFilter} team.</p>`;
+      return;
+    }
+
+    const employeeCards = filteredEmployees.map(employee => `
       <div class="employee-card">
         <h3>${employee.first_name} ${employee.last_name}</h3>
         <p>${employee.job_title}</p>
@@ -49,15 +60,26 @@ const deleteEmployee = async (id) => {
       throw new Error(`Error: ${response.status}`);
     }
     alert('Employee deleted successfully');
-    await getEmployees();
+    const teamSelect = document.getElementById("teams");
+    await getEmployees(teamSelect.value);
   } catch (error) {
     console.error('Delete failed:', error);
     alert(`Failed to delete employee: ${error.message}`);
   }
 };
 
-document.getElementById("callFunction").addEventListener("click", getEmployees);
+document.getElementById("callFunction").addEventListener("click", () => {
+  const teamSelect = document.getElementById("teams");
+  getEmployees(teamSelect.value);
+});
 
+document.getElementById("teams").addEventListener("change", (event) => {
+  getEmployees(event.target.value);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  getEmployees("All Teams");
+});
 
 
 
