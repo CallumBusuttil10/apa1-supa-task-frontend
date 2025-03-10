@@ -58,8 +58,11 @@ const updateEmployee = async (event) => {
 
         const resultDiv = document.createElement('div');
         resultDiv.id = 'result';
+        resultDiv.classList.add('result');
         resultDiv.textContent = "Employee updated successfully";
-        document.querySelector('.form-container').appendChild(resultDiv);
+        const updateButton = document.getElementById('submit');
+        const form = document.getElementById('editEmployeeForm');
+        form.insertBefore(resultDiv, updateButton);
 
     } catch (error) {
         console.error(`Error updating employee: ${error.message}`);
