@@ -18,8 +18,9 @@ const getEmployees = async () => {
     const employeeCards = data.map(employee => `
       <div class="employee-card">
         <h3>${employee.first_name} ${employee.last_name}</h3>
-        <p>Job Title: ${employee.job_title}</p>
-        <p>Email: ${employee.email}</p>
+        <p>${employee.job_title}</p>
+        <p>${employee.email}</p>
+        <p style="font-weight: bold">Team: ${employee.team_name || 'Not Assigned'}</p>
         <div class="button-container">
           <a href="/PUT/editEmployees.html?id=${employee.id}" class="edit-link">
             <button class="edit-button">Edit</button>
@@ -56,7 +57,6 @@ const deleteEmployee = async (id) => {
 };
 
 document.getElementById("callFunction").addEventListener("click", getEmployees);
-
 
 
 
