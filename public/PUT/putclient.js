@@ -3,6 +3,20 @@ const getEmployeeIdFromUrl = () => {
     return params.get('id');
 };
 
+// Map team names to IDs for easy lookup
+const teamMapping = {
+    'Commercial': 1,
+    'Front End Development': 2,
+    'Back End Development': 3
+};
+
+// Map team IDs to names for reverse lookup
+const teamIdToName = {
+    1: 'Commercial',
+    2: 'Front End Development',
+    3: 'Back End Development'
+};
+
 const loadEmployeeData = async (employeeId) => {
     try {
         const response = await fetch(`/api/employees/${employeeId}`, {
@@ -18,11 +32,17 @@ const loadEmployeeData = async (employeeId) => {
 
         const employee = await response.json();
 
-        // Populate form fields
         document.getElementById('firstName').value = employee.first_name;
         document.getElementById('lastName').value = employee.last_name;
         document.getElementById('jobTitle').value = employee.job_title;
         document.getElementById('email').value = employee.email;
+
+        const teamSelect = document.getElementById('team');
+        if (employee.team_id) {
+            teamSelect.value = employee.team_id;
+        } else if (employee.team_name && teamMapping[employee.team_name]) {
+            teamSelect.value = teamMapping[employee.team_name];
+        }
 
     } catch (error) {
         console.error(error);
@@ -33,12 +53,15 @@ const updateEmployee = async (event) => {
     event.preventDefault();
     const employeeId = getEmployeeIdFromUrl();
 
+    const teamId = document.getElementById('team').value;
+
     const updatedEmployee = {
         id: employeeId,
         first_name: document.getElementById('firstName').value,
         last_name: document.getElementById('lastName').value,
         job_title: document.getElementById('jobTitle').value,
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
+        team_id: teamId
     };
 
     try {
