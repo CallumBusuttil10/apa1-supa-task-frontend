@@ -1,28 +1,49 @@
-const getEmployees = async (teamFilter = "All Teams") => {
+let allEmployees = [];
+
+const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Fetching Employees...";
 
   try {
-    const response = await fetch(`/api/employees`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    if (allEmployees.length === 0) {
+      const response = await fetch(`/api/employees`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      allEmployees = await response.json();
     }
 
-    const data = await response.json();
+    let filteredEmployees = allEmployees;
 
-    // Filter employees by team if a specific team is selected
-    const filteredEmployees = teamFilter === "All Teams"
-      ? data
-      : data.filter(employee => employee.team_name === teamFilter);
+    if (teamFilter !== "All Teams") {
+      filteredEmployees = filteredEmployees.filter(
+        employee => employee.team_name === teamFilter
+      );
+    }
+
+    if (nameSearch.trim() !== "") {
+      const searchTerm = nameSearch.toLowerCase().trim();
+      filteredEmployees = filteredEmployees.filter(employee =>
+        `${employee.first_name} ${employee.last_name}`.toLowerCase().includes(searchTerm)
+      );
+    }
 
     if (filteredEmployees.length === 0) {
-      resultElement.innerHTML = `<p>No employees found in the ${teamFilter} team.</p>`;
+      let message = "No employees found";
+      if (teamFilter !== "All Teams") {
+        message += ` in the ${teamFilter} team`;
+      }
+      if (nameSearch.trim() !== "") {
+        message += ` with name containing "${nameSearch}"`;
+      }
+      resultElement.innerHTML = `<p>${message}.</p>`;
       return;
     }
 
@@ -59,51 +80,34 @@ const deleteEmployee = async (id) => {
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
+    allEmployees = allEmployees.filter(emp => emp.id !== id);
+
     alert('Employee deleted successfully');
+
     const teamSelect = document.getElementById("teams");
-    await getEmployees(teamSelect.value);
+    const nameSearch = document.getElementById("nameSearch").value;
+    await getEmployees(teamSelect.value, nameSearch);
   } catch (error) {
     console.error('Delete failed:', error);
     alert(`Failed to delete employee: ${error.message}`);
   }
 };
 
-document.getElementById("callFunction").addEventListener("click", () => {
-  const teamSelect = document.getElementById("teams");
-  getEmployees(teamSelect.value);
-});
-
-document.getElementById("teams").addEventListener("change", (event) => {
-  getEmployees(event.target.value);
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  getEmployees("All Teams");
-});
-
-
-
-//Josh's Example REMOVE BEFORE SUBMITTING
-const getMessages = async () => {
-  const resultElement = document.getElementById("result");
-  resultElement.textContent = "Loading...";
-
-  try {
-    const response = await fetch(`/api/messages`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    resultElement.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-  } catch (error) {
-    resultElement.textContent = `Error: ${error.message}`;
-  }
+const applyFilters = () => {
+  const teamFilter = document.getElementById("teams").value;
+  const nameSearch = document.getElementById("nameSearch").value;
+  getEmployees(teamFilter, nameSearch);
 };
 
+document.getElementById("callFunction").addEventListener("click", () => {
+  applyFilters();
+});
+
+document.getElementById("teams").addEventListener("change", () => {
+  applyFilters();
+});
+
+// Event listener for the search input (search as you type)
+document.getElementById("nameSearch").addEventListener("input", () => {
+  applyFilters();
+});

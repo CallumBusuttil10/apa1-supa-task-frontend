@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="post-styles.css" />
   </head>
   <body>
-
     <div class="form-container">
         <h1 class="form-header">Add New Employee</h1>
         <form id="employeeForm" class="employee-form">
@@ -22,9 +21,15 @@
     
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" name="email" class="form-input" placeholder="Enter email" required>
-    
-          <button type="submit" class="add-button">Add Employee</button>
 
+          <label for="team" class="form-label">Team</label>
+          <select id="team" name="team" class="form-input" required>
+            <option value="1">Commercial</option>
+            <option value="2">Front End Development</option>
+            <option value="3">Back End Development</option>
+          </select>
+
+          <button type="submit" class="add-button">Add Employee</button>
         </form>
         <a href="../index.html">
           <button class="home-button" style="margin-top: 5px">Return to the Home Page</button>

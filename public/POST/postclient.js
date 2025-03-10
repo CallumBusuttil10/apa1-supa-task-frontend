@@ -22,16 +22,22 @@ const postMessage = async () => {
     }
   };
   
-  const postEmployee = async (firstName, lastName, jobTitle, email) => {
-    console.log('Sending employee data:', { firstName, lastName, jobTitle, email });
-  
+  const postEmployee = async (firstName, lastName, jobTitle, email, teamId) => {
+    console.log('Sending employee data:', { firstName, lastName, jobTitle, email, teamId });
+
     try {
       const response = await fetch(`/api/new_employee`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ first_name: firstName, last_name: lastName, job_title: jobTitle, email: email }),
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          job_title: jobTitle,
+          email: email,
+          team_id: teamId
+        }),
       });
   
       console.log('Response status:', response.status);
@@ -48,7 +54,9 @@ const postMessage = async () => {
 
       const addButton = document.querySelector('.add-button');
       const form = document.getElementById('employeeForm');
-      form.insertBefore(resultDiv, addButton);      return data;
+      form.insertBefore(resultDiv, addButton);
+
+      return data;
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to add employee: ' + error.message);
@@ -65,10 +73,10 @@ const postMessage = async () => {
         const lastName = document.getElementById('last_name').value;
         const jobTitle = document.getElementById('job_title').value;
         const email = document.getElementById('email').value;
-  
-        await postEmployee(firstName, lastName, jobTitle, email);
+        const teamId = document.getElementById('team').value;
+
+        await postEmployee(firstName, lastName, jobTitle, email, teamId);
         employeeForm.reset();
       });
     }
   });
-  
