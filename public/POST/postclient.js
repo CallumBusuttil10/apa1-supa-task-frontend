@@ -41,12 +41,14 @@ const postMessage = async () => {
       }
   
       const data = await response.json();
-      console.log('Response data:', data);
-      
-      // Show success message to user
-      alert('Employee added successfully!');
-      
-      return data;
+      const resultDiv = document.createElement('div');
+      resultDiv.id = 'result';
+      resultDiv.classList.add('result');
+      resultDiv.textContent = "Employee added successfully";
+
+      const addButton = document.querySelector('.add-button');
+      const form = document.getElementById('employeeForm');
+      form.insertBefore(resultDiv, addButton);      return data;
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to add employee: ' + error.message);
