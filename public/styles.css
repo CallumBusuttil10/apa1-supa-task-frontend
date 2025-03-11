@@ -77,6 +77,19 @@ button {
   text-align: center;
   color: var(--text-color);
   transition: color 0.3s ease;
+  flex: 1;
+  margin: 0; /* Remove default margins */
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header-right {
+  width: 120px; /* Should match the width of the theme-toggle */
 }
 
 .employee-card {
@@ -210,7 +223,8 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto;
+  width: 120px; /* Set a fixed width to balance with the left side */
+  justify-content: flex-end;
 }
 
 .mode-switch {
