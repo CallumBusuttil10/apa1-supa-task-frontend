@@ -3,18 +3,11 @@ const getEmployeeIdFromUrl = () => {
     return params.get('id');
 };
 
-// Map team names to IDs for easy lookup
+// Map team names to IDs for lookup
 const teamMapping = {
     'Commercial': 1,
     'Front End Development': 2,
     'Back End Development': 3
-};
-
-// Map team IDs to names for reverse lookup
-const teamIdToName = {
-    1: 'Commercial',
-    2: 'Front End Development',
-    3: 'Back End Development'
 };
 
 const loadEmployeeData = async (employeeId) => {
