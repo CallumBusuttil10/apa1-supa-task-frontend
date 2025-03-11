@@ -23,14 +23,14 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
 
     if (teamFilter !== "All Teams") {
       filteredEmployees = filteredEmployees.filter(
-        employee => employee.team_name === teamFilter
+          employee => employee.team_name === teamFilter
       );
     }
 
     if (nameSearch.trim() !== "") {
       const searchTerm = nameSearch.toLowerCase().trim();
       filteredEmployees = filteredEmployees.filter(employee =>
-        `${employee.first_name} ${employee.last_name}`.toLowerCase().includes(searchTerm)
+          `${employee.first_name} ${employee.last_name}`.toLowerCase().includes(searchTerm)
       );
     }
 
@@ -98,15 +98,43 @@ const applyFilters = () => {
   getEmployees(teamFilter, nameSearch);
 };
 
-document.getElementById("callFunction").addEventListener("click", () => {
-  applyFilters();
-});
+const initThemeToggle = () => {
+  const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return; // Safety check
 
-document.getElementById("teams").addEventListener("change", () => {
-  applyFilters();
-});
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.checked = true;
+  } else if (savedTheme === 'light') {
+    document.body.classList.remove('dark-mode');
+    themeToggle.checked = false;
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark-mode');
+    themeToggle.checked = true;
+  }
 
-// Event listener for the search input (search as you type)
-document.getElementById("nameSearch").addEventListener("input", () => {
-  applyFilters();
+  // Toggle theme when switch is clicked
+  themeToggle.addEventListener('change', function() {
+    if (this.checked) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  getEmployees();
+  initThemeToggle(); // Initialize theme toggle functionality
+
+  document.getElementById("teams").addEventListener("change", () => {
+    applyFilters();
+  });
+
+  document.getElementById("nameSearch").addEventListener("input", () => {
+    applyFilters();
+  });
 });

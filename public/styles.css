@@ -1,3 +1,29 @@
+:root {
+  --background-color: #f5f5f5;
+  --container-bg: white;
+  --text-color: #333;
+  --card-bg: white;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-hover-bg: lightgray;
+  --input-border: #ccc;
+  --search-button-bg: #4CAF50;
+  --search-button-hover: #45a049;
+  --body-bg: #f0f0f0;
+}
+
+.dark-mode {
+  --background-color: #121212;
+  --container-bg: #272727;
+  --text-color: #e0e0e0;
+  --card-bg: #323131;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --card-hover-bg: #3a3a3a;
+  --input-border: #444;
+  --search-button-bg: #3b8a3f;
+  --search-button-hover: #2e6e32;
+  --body-bg: #1a1a1a;
+}
+
 a {
   font-size: 10px;
   border: none;
@@ -8,11 +34,13 @@ a {
 }
 
 body {
-  background-color: grey;
+  background-color: var(--body-bg);
+  color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
@@ -26,47 +54,36 @@ button {
   margin-top: 20px;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid #ddd;
-  background: #f9f9f9;
+  border: 1px solid var(--input-border);
+  background: var(--container-bg);
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem;
+  justify-content: flex-start;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .get-container {
   max-width: 90vw;
   margin: 50px auto;
   padding: 20px;
-  background-color: white;
+  background-color: var(--container-bg);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .get-header {
   text-align: center;
-  color: #333;
-}
-
-.get-button {
-  padding: 12px;
-  background-color: #4caf50;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.get-button:hover {
-  background-color: #45a049;
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 .employee-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   transition: all 0.3s ease;
   aspect-ratio: 1 / 1;
   display: flex;
@@ -76,12 +93,13 @@ button {
   text-align: center;
   width: 200px;
   flex: 0 0 200px;
+  color: var(--text-color);
 }
 
 .employee-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  background-color: lightgray;
+  background-color: var(--card-hover-bg);
 }
 
 .add-button {
@@ -89,20 +107,20 @@ button {
   background-color: #118df4;
   color: white;
   font-size: 16px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: block;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left: auto;
 }
 
 .employee-card h3 {
   margin: 0 0 12px 0;
-  color: #2c3e50;
+  color: var(--text-color);
   font-size: 1.4rem;
+  transition: color 0.3s ease;
 }
 
-.edit-button{
+.edit-button {
   background-color: #56b335;
   color: white;
   border: none;
@@ -111,7 +129,7 @@ button {
   cursor: pointer;
 }
 
-.edit-button:hover{
+.edit-button:hover {
   background-color: #397822;
 }
 
@@ -149,27 +167,97 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .search-input {
   padding: 8px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
   border-radius: 4px;
   font-size: 14px;
   flex-grow: 1;
   max-width: 250px;
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .search-button {
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: var(--search-button-bg);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #45a049;
+  background-color: var(--search-button-hover);
+}
+
+#teams {
+  padding: 8px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.mode-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.mode-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.mode-icon {
+  font-size: 18px;
 }

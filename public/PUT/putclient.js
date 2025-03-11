@@ -7,7 +7,21 @@ const getEmployeeIdFromUrl = () => {
 const teamMapping = {
     'Commercial': 1,
     'Front End Development': 2,
-    'Back End Development': 3
+    'Back End Development': 3,
+    'Recruitment': 4
+};
+
+// Apply theme based on user preference
+const applyTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' ||
+        (savedTheme !== 'light' &&
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
 };
 
 const loadEmployeeData = async (employeeId) => {
@@ -86,6 +100,8 @@ const updateEmployee = async (event) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    applyTheme();
+
     const employeeId = getEmployeeIdFromUrl();
     if (employeeId) {
         loadEmployeeData(employeeId);

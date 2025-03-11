@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Portal</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+<div class="theme-toggle">
+    <span class="mode-icon"><i class="fas fa-sun"></i></span>
+    <label class="mode-switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+    </label>
+    <span class="mode-icon"><i class="fas fa-moon"></i></span>
+</div>
 <div class="get-container">
     <h1 class="get-header">Welcome to the Employee Portal!</h1>
-    <button id="callFunction" class="get-button">Show Employees</button>
-
     <div class="search-container">
         <label for="nameSearch">Search by name:</label>
-        <input type="text" id="nameSearch" placeholder="Enter employee name" class="search-input">
+        <input type="text" id="nameSearch" placeholder="Enter employee name" class="search-input" />
         <label for="teams">Filter by team:</label>
         <select name="teams" id="teams">
             <option value="All Teams">All Teams</option>
             <option value="Commercial">Commercial</option>
             <option value="Front End Development">Front End Development</option>
             <option value="Back End Development">Back End Development</option>
+            <option value="Recruitment">Recruitment</option>
         </select>
+        <a href="POST/addEmployees.html" class="add-button">Add Employee</a>
     </div>
-
     <div id="result" class="get-result">Results will appear here...</div>
-
-    <a href="POST/addEmployees.html">
-        <button class="add-button" style="margin-top: 30px">Go to Add Employees</button>
-    </a>
 </div>
 <script src="getclient.js"></script>
 </body>
