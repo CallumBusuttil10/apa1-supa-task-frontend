@@ -94,3 +94,17 @@ Run the test suite with:
 npx jest tests/public/addModal.test.js
 npx jest tests/public/editModal.test.js
 npx jest tests/public/getclient.test.js
+```
+---
+# Future Considerations
+
+This application is a **work in progress** and has the potential to be expanded and enhanced in the future. Here are some potential enhancements:
+
+## Authentication & Authorization
+Implement role-based access control to ensure secure access based on user roles.
+
+## Batch Processing
+Enable bulk operations for handling multiple employees at once.
+
+## Supabase Analytics Implementation
+Extend API functionality to support Supabase Analytics for data analysis and insights.
