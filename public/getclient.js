@@ -34,6 +34,8 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
       );
     }
 
+    updateEmployeeCount(filteredEmployees.length, allEmployees.length);
+
     if (filteredEmployees.length === 0) {
       let message = "No employees found";
       if (teamFilter !== "All Teams") {
@@ -64,6 +66,14 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
     resultElement.innerHTML = employeeCards;
   } catch (error) {
     resultElement.textContent = `Error: ${error.message}`;
+  }
+};
+
+const updateEmployeeCount = (shownCount, totalCount) => {
+  const countElement = document.getElementById("employee-count");
+  if (countElement) {
+    countElement.textContent = `Showing ${shownCount} of ${totalCount} employees`;
+    countElement.style.marginTop = "15px";
   }
 };
 
@@ -114,7 +124,6 @@ const initThemeToggle = () => {
     themeToggle.checked = true;
   }
 
-  // Toggle theme when switch is clicked
   themeToggle.addEventListener('change', function() {
     if (this.checked) {
       document.body.classList.add('dark-mode');
@@ -128,7 +137,7 @@ const initThemeToggle = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   getEmployees();
-  initThemeToggle(); // Initialize theme toggle functionality
+  initThemeToggle();
 
   document.getElementById("teams").addEventListener("change", () => {
     applyFilters();

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 <div class="get-container">
     <div class="header-container">
@@ -32,11 +33,13 @@
             <option value="Back End Development">Back End Development</option>
             <option value="Recruitment">Recruitment</option>
         </select>
-        <a href="POST/addEmployees.html" class="add-button">Add Employee</a>
+        <div class="button-container">
+            <a href="POST/addEmployees.html" class="add-button">Add Employee</a>
+            <div id="employee-count" class="employee-count"></div>
+        </div>
     </div>
     <div id="result" class="get-result">Results will appear here...</div>
 </div>
 <script src="getclient.js"></script>
 </body>
 </html>
-

@@ -9,19 +9,37 @@
   --search-button-bg: #4CAF50;
   --search-button-hover: #45a049;
   --body-bg: #f0f0f0;
+  --form-bg: white;
+  --form-text: #333;
+  --input-bg: white;
+  --input-text: #333;
+  --button-bg: #118df4;
+  --button-hover: #0b7dda;
+  --home-button-bg: #f5f5f5;
+  --home-button-text: #333;
+  --home-button-hover: #e0e0e0;
 }
 
 .dark-mode {
   --background-color: #121212;
-  --container-bg: #272727;
+  --container-bg: #1e1e1e;
   --text-color: #e0e0e0;
-  --card-bg: #323131;
+  --card-bg: #2c2c2c;
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   --card-hover-bg: #3a3a3a;
   --input-border: #444;
   --search-button-bg: #3b8a3f;
   --search-button-hover: #2e6e32;
   --body-bg: #1a1a1a;
+  --form-bg: #1e1e1e;
+  --form-text: #e0e0e0;
+  --input-bg: #2c2c2c;
+  --input-text: #e0e0e0;
+  --button-bg: #0e74c7;
+  --button-hover: #0a5ca0;
+  --home-button-bg: #3a3a3a;
+  --home-button-text: #e0e0e0;
+  --home-button-hover: #4a4a4a;
 }
 
 a {
@@ -59,7 +77,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Changed from flex-end to flex-start */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -73,14 +91,6 @@ button {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.get-header {
-  text-align: center;
-  color: var(--text-color);
-  transition: color 0.3s ease;
-  flex: 1;
-  margin: 0;
-}
-
 .header-container {
   display: flex;
   align-items: center;
@@ -90,6 +100,14 @@ button {
 
 .header-right {
   width: 120px;
+}
+
+.get-header {
+  text-align: center;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  flex: 1;
+  margin: 0;
 }
 
 .employee-card {
@@ -115,15 +133,30 @@ button {
   background-color: var(--card-hover-bg);
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.employee-count {
+  font-size: 12px;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-top: 5px;
+  text-align: right;
+  transition: color 0.3s ease;
+}
+
 .add-button {
   padding: 12px;
-  background-color: #118df4;
+  background-color: var(--button-bg);
   color: white;
   font-size: 16px;
   display: block;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: auto;
 }
 
 .employee-card h3 {
@@ -147,7 +180,7 @@ button {
 }
 
 .add-button:hover {
-  background-color: #0b7dda;
+  background-color: var(--button-hover);
 }
 
 .delete-button {
@@ -190,8 +223,8 @@ button {
   font-size: 14px;
   flex-grow: 1;
   max-width: 250px;
-  background-color: var(--container-bg);
-  color: var(--text-color);
+  background-color: var(--input-bg);
+  color: var(--input-text);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -214,8 +247,8 @@ button {
   padding: 8px 12px;
   border: 1px solid var(--input-border);
   border-radius: 4px;
-  background-color: var(--container-bg);
-  color: var(--text-color);
+  background-color: var(--input-bg);
+  color: var(--input-text);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -224,7 +257,7 @@ button {
   align-items: center;
   gap: 8px;
   width: 120px;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .mode-switch {
