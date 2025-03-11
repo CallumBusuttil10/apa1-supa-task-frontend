@@ -1,78 +1,96 @@
-# APA1 Supa Task Frontend
+# Employee Management System
 
 ## Project Overview
-This project for an open ending CRUD app, what the app does is your choice but it should implement CRUD functionality
+This Employee Management System is a **CRUD (Create, Read, Update, Delete)** web application that allows users to manage employee data. The application features a responsive interface with light/dark mode support, filtering and sorting capabilities, and an employee search function.
 
-## Setup Instructions
-1. Install dependencies: Run `npm install` in your terminal to install all necessary dependencies.
-2. Set up Supabase:
-   - Create a free Supabase account if you don't have one
-   - Create a new project in your Supabase dashboard
-   - Copy your Supabase URL and anon key into the `.env` file (use `.env.example` as a template)
-3. Start the development server: Run `node server.js` in your terminal.
-4. Open your web browser and navigate to `http://localhost:3000` to access the application.
+---
 
-## Database Management
-The project uses Supabase as the database provider:
+## Features
 
-The [companion backend app](https://github.com/jdowie-ada/apa1-supa-task-backend) will be used to manage the database 
+### CRUD Operations
+
+#### 1. CREATE: Add New Employees
+- Implemented in **`public/addModal.js`**
+- Uses a modal form to collect employee data
+- Sends **POST** requests to **`/api/new_employee`**
+
+#### 2. READ: View and Filter Employees
+- Implemented in **`public/getclient.js`**
+- Displays employees in a responsive card format
+- Supports filtering by team, name search, and sorting options
+- Fetches data via **GET** requests to **`/api/employees`**
+
+#### 3. UPDATE: Edit Existing Employees
+- Implemented in **`public/editModal.js`**
+- Pre-populates a modal form with employee data
+- Submits changes via **PUT** requests to **`/api/employees/:id`**
+
+#### 4. DELETE: Remove Employees
+- Implemented in **`public/getclient.js`**
+- Triggered by delete buttons on each employee card
+- Sends **DELETE** requests to **`/api/employees/:id`**
+
+---
+
+## Additional Features
+**Responsive Design**: Adapts to different screen sizes  
+**Theme Support**: Toggle between light and dark mode  
+**Advanced Filtering**: Filter employees by team and name search  
+**Sorting Options**: Sort by name, salary (highest/lowest), or hire date (newest/oldest)  
+**Error Handling**: Comprehensive error handling for all API operations  
+**Responsive UI Feedback**: Feedback on how many employees are being displayed and event listeners to update the UI as the user searches.
+
+
+---
+
+## Technical Implementation
+
+### Frontend Structure
+- Vanilla **JavaScript** with modular design
+- **DOM manipulation** for dynamic content updates
+- **Event-driven architecture** for user interactions
+
+### API Communication
+- **Fetch API** for all HTTP requests
+- **JSON** data format for API communication
+- **RESTful** endpoint structure
+
+### Data Management
+- **Client-side filtering and sorting**
+- **Caching** of employee data to minimize API calls
+- **Form validation** and **data normalization**
+---
+
+## Challenges & Solutions
+
+### 1. **Splitting CRUD Functions Across Different Pages**
+**Challenge**: Initially, CRUD functions were split across different pages. While this worked at first, it became inefficient when refining the application, requiring extra effort to merge files and refactor the code.  
+**Solution**: Consolidated all CRUD operations into a **single, modular structure** to improve maintainability and reduce redundancy.
+
+### 2. **Limited CSS Knowledge & Research Time**
+**Challenge**: Being unfamiliar with CSS meant extra time spent researching styles, layouts, and best practices.  
+**Solution**: Invested time in learning **CSS fundamentals**, using Generative AI to highlight my errors and experimented with different styles to improve proficiency through **hands-on practice**.
+
+### 3. **Limitations of Raw HTML & CSS vs. React**
+**Challenge**: Using raw HTML and CSS instead of a library like React led to more manual DOM manipulation, which increased complexity.  
+**Solution**: Learned a lot about **HTML and DOM elements**, but after discussions with teammates, realized that using **React could have streamlined development** and made state management easier.
+
+---
 
 ## Testing
-This is an open-ended project,   and you may choose your preferred testing approach:
-- Manual testing through the application interface
-- Leveraging Supabase's built-in Row Level Security (RLS) policy testing
-- Writing custom unit or integration tests with a framework of your choice (Jest, Mocha, etc.)
 
-## Assignment Objectives
-- Extend and enhance the existing web application
-- Apply database and frontend development principles using Supabase
-- Follow good programming standards
-- Develop and execute a testing strategy appropriate for your implementation
-- Use GitHub effectively for collaboration and documentation
-- Prepare for a viva to explain project design and code implementation
+### Automated Testing
+- **Jest** for automated testing
+- **Unit tests** for all CRUD operations
+- **Mocked API responses** for predictable testing
 
-## TODO
+### Manual Testing
+- **DevTools** for CSS tweaking and debugging
+- **Console Logs** for functional testing visibility
 
-### Core Functionalities
-1. Implement full CRUD operations for all items using Supabase's JavaScript client
-2. Create a unified interface to manage all items
-3. Create appropriate database relationships and constraints using Supabase's SQL editor
-
-### Extend Functionalities
-1. User login auth etc.
-2. Enhance the frontend to display and manage the various items
-3. Implement sorting and filtering options
-4. (on backend) write more edge functions to extend API
-
-You're free to come up with your own ideas too either on the front or backend
-
-### Good Programming Standards
-1. Structure your code for readability and modularity
-2. Use consistent naming conventions
-3. Implement proper error handling 
-4. Document your code thoroughly
-etc.
-
-### Testing
-Ideas for testing:
-1. Document manual testing procedures and results
-2. Leverage Supabase's RLS policies and test them
-3. Write unit/integration tests for critical functionality
-
-### GitHub Practices
-1. Use Git and GitHub for version control
-2. Create a comprehensive README documenting your implementation (replace this README)
-3. Make small, meaningful commits with clear messages
-4. Create a project board to track your progress (optional)
-
-## Additional Features (Optional)
-1. Implement responsive design for different devices
-2. Add accessibility features following WCAG guidelines
-3. Implement more advanced Supabase features:
-   - Real-time updates using Supabase subscriptions
-   - Storage for product images
-   - Edge Functions for complex operations
-4. Add analytics dashboard using Supabase's built-in analytics
-
-
-Remember to document your development process, including any challenges you encounter and how you solve them. This will be valuable during your viva and for maintaining the project in the future.
+### Running Tests
+Run the test suite with:
+```
+npx jest tests/public/addModal.test.js
+npx jest tests/public/editModal.test.js
+npx jest tests/public/getclient.test.js
