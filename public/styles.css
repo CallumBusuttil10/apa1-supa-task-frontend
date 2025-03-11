@@ -19,7 +19,7 @@
 }
 
 .dark-mode {
-  --background-color: #121212;
+  --background-color: #3c3c3c;
   --container-bg: #1e1e1e;
   --text-color: #e0e0e0;
   --card-bg: #2c2c2c;
@@ -36,6 +36,7 @@
   --home-button-bg: #3a3a3a;
   --home-button-text: #e0e0e0;
   --home-button-hover: #4a4a4a;
+  --modal-bg: #333333;
 }
 
 a {
@@ -72,8 +73,8 @@ button {
   background: var(--container-bg);
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Increased gap for better spacing */
-  justify-content: center; /* Center the cards */
+  gap: 20px;
+  justify-content: center;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -117,13 +118,12 @@ button {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  width: 240px;      /* Increased from 200px to 240px */
+  width: 240px;
   height: 340px;
-  flex: 0 0 240px;   /* Also increased from 200px to 240px to match width */
+  flex: 0 0 240px;
   color: var(--text-color);
   margin-bottom: 10px;
 }
-
 
 .employee-card:hover {
   transform: translateY(-4px);
@@ -135,7 +135,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: auto;
 }
 
 .card-button-container {
@@ -152,7 +151,7 @@ button {
   color: var(--text-color);
   opacity: 0.8;
   margin-top: 5px;
-  text-align: right;
+  text-align: center;
   transition: color 0.3s ease;
 }
 
@@ -216,7 +215,6 @@ button {
 
 .employee-card .button-container {
   flex-direction: row;
-  gap: 10px;
   margin-top: auto;
   width: 100%;
   justify-content: center;
@@ -319,4 +317,69 @@ input:checked + .slider:before {
   background-color: var(--input-bg);
   color: var(--input-text);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--background-color);
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+  transform: translateY(-50px);
+  transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.close-modal {
+  color: var(--text-color);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.form-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }

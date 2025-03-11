@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Portal</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-<div class="get-container">
-    <div class="header-container">
+<main class="get-container">
+    <header class="header-container">
         <div class="theme-toggle">
             <span class="mode-icon"><i class="fas fa-sun"></i></span>
             <label class="mode-switch">
@@ -21,20 +19,23 @@
         </div>
         <h1 class="get-header">Welcome to the Employee Portal!</h1>
         <div class="header-right"></div>
-    </div>
-    <div class="search-container">
+    </header>
+
+    <section class="search-container">
         <label for="nameSearch">Search by name:</label>
-        <input type="text" id="nameSearch" placeholder="Enter employee name" class="search-input" />
+        <input type="text" id="nameSearch" placeholder="Enter employee name" class="search-input">
+
         <label for="teams">Filter by team:</label>
-        <select name="teams" id="teams">
+        <select id="teams">
             <option value="All Teams">All Teams</option>
             <option value="Commercial">Commercial</option>
             <option value="Front End Development">Front End Development</option>
             <option value="Back End Development">Back End Development</option>
             <option value="Recruitment">Recruitment</option>
         </select>
+
         <label for="sortOption">Sort by:</label>
-        <select name="sortOption" id="sortOption">
+        <select id="sortOption">
             <option value="default">Default</option>
             <option value="alphabetical">Alphabetical</option>
             <option value="salaryHighest">Salary (Highest First)</option>
@@ -42,13 +43,89 @@
             <option value="hireDate">Hire Date (Newest First)</option>
             <option value="hireDateOldest">Hire Date (Oldest First)</option>
         </select>
+
         <div class="button-container">
-            <a href="POST/addEmployees.html" class="add-button">Add Employee</a>
-            <div id="employee-count" class="employee-count"></div>
+            <button class="add-button">Add Employee</button>
         </div>
+    </section>
+
+    <div id="employee-count" class="employee-count"></div>
+    <section id="result" class="get-result">Results will appear here...</section>
+</main>
+
+<!-- Add Employee Modal -->
+<div id="employeeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <form id="employeeForm" class="employee-form">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-input" placeholder="Enter first name" required>
+
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-input" placeholder="Enter last name" required>
+
+            <label for="job_title" class="form-label">Job Title</label>
+            <input type="text" id="job_title" name="job_title" class="form-input" placeholder="Enter job title" required>
+
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Enter email" required>
+
+            <label for="salary" class="form-label">Salary (£)</label>
+            <input type="number" id="salary" name="salary" class="form-input" placeholder="Enter salary" step="0.01" min="0">
+
+            <label for="team" class="form-label">Team</label>
+            <select id="team" name="team" class="form-input" required>
+                <option value="1">Commercial</option>
+                <option value="2">Front End Development</option>
+                <option value="3">Back End Development</option>
+                <option value="4">Recruitment</option>
+            </select>
+
+            <button type="submit" class="add-button">Add Employee</button>
+        </form>
     </div>
-    <div id="result" class="get-result">Results will appear here...</div>
 </div>
+
+<!-- Edit Employee Modal -->
+<div id="editEmployeeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <form id="editEmployeeForm" class="employee-form">
+            <input type="hidden" id="employeeId">
+
+            <label for="editFirstName" class="form-label">First Name</label>
+            <input type="text" id="editFirstName" name="editFirstName" class="form-input" placeholder="Enter first name" required>
+
+            <label for="editLastName" class="form-label">Last Name</label>
+            <input type="text" id="editLastName" name="editLastName" class="form-input" placeholder="Enter last name" required>
+
+            <label for="editJobTitle" class="form-label">Job Title</label>
+            <input type="text" id="editJobTitle" name="editJobTitle" class="form-input" placeholder="Enter job title" required>
+
+            <label for="editEmail" class="form-label">Email</label>
+            <input type="email" id="editEmail" name="editEmail" class="form-input" placeholder="Enter email" required>
+
+            <label for="editSalary" class="form-label">Salary (£)</label>
+            <input type="number" id="editSalary" name="editSalary" class="form-input" placeholder="Enter salary" step="0.01" min="0">
+
+            <label for="editTeam" class="form-label">Team</label>
+            <select id="editTeam" name="editTeam" class="form-input" required>
+                <option value="1">Commercial</option>
+                <option value="2">Front End Development</option>
+                <option value="3">Back End Development</option>
+                <option value="4">Recruitment</option>
+            </select>
+
+            <label for="editHireDate" class="form-label">Hire Date</label>
+            <input type="date" id="editHireDate" name="editHireDate" class="form-input">
+
+            <button type="submit" class="add-button">Update Employee</button>
+        </form>
+    </div>
+</div>
+
 <script src="getclient.js"></script>
+<script src="addModal.js"></script>
+<script src="editModal.js"></script>
 </body>
 </html>
