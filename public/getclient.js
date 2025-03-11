@@ -34,7 +34,6 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "", sortOptio
       );
     }
 
-    // Sort the employees based on the selected option
     if (sortOption === "alphabetical") {
       filteredEmployees.sort((a, b) => {
         const nameA = `${a.first_name} ${a.last_name}`.toLowerCase();

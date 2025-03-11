@@ -6,8 +6,6 @@
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --card-hover-bg: lightgray;
   --input-border: #ccc;
-  --search-button-bg: #4CAF50;
-  --search-button-hover: #45a049;
   --body-bg: #f0f0f0;
   --form-bg: white;
   --form-text: #333;
@@ -28,8 +26,6 @@
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   --card-hover-bg: #3a3a3a;
   --input-border: #444;
-  --search-button-bg: #3b8a3f;
-  --search-button-hover: #2e6e32;
   --body-bg: #1a1a1a;
   --form-bg: #1e1e1e;
   --form-text: #e0e0e0;
@@ -226,6 +222,7 @@ button {
   justify-content: center;
   align-items: center;
   margin-left: 0;
+  gap: 30px;
 }
 
 .search-container {

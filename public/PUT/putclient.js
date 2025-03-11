@@ -44,6 +44,11 @@ const loadEmployeeData = async (employeeId) => {
         document.getElementById('jobTitle').value = employee.job_title;
         document.getElementById('email').value = employee.email;
 
+        // Set salary value if it exists
+        if (employee.salary) {
+            document.getElementById('salary').value = employee.salary;
+        }
+
         const teamSelect = document.getElementById('team');
         if (employee.team_id) {
             teamSelect.value = employee.team_id;
@@ -61,6 +66,7 @@ const updateEmployee = async (event) => {
     const employeeId = getEmployeeIdFromUrl();
 
     const teamId = document.getElementById('team').value;
+    const salary = document.getElementById('salary').value;
 
     const updatedEmployee = {
         id: employeeId,
@@ -68,7 +74,8 @@ const updateEmployee = async (event) => {
         last_name: document.getElementById('lastName').value,
         job_title: document.getElementById('jobTitle').value,
         email: document.getElementById('email').value,
-        team_id: teamId
+        team_id: teamId,
+        salary: salary || null
     };
 
     try {

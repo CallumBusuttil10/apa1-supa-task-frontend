@@ -35,8 +35,12 @@ const postMessage = async () => {
   }
 };
 
-const postEmployee = async (firstName, lastName, jobTitle, email, teamId) => {
-  console.log('Sending employee data:', { firstName, lastName, jobTitle, email, teamId });
+const postEmployee = async (firstName, lastName, jobTitle, email, teamId, salary) => {
+  console.log('Sending employee data:', { firstName, lastName, jobTitle, email, teamId, salary });
+
+  // Generate current date in YYYY-MM-DD format for hire_date
+  const currentDate = new Date().toISOString().split('T')[0];
+  console.log('Setting hire date to:', currentDate);
 
   try {
     const response = await fetch(`/api/new_employee`, {
@@ -49,7 +53,9 @@ const postEmployee = async (firstName, lastName, jobTitle, email, teamId) => {
         last_name: lastName,
         job_title: jobTitle,
         email: email,
-        team_id: teamId
+        team_id: teamId,
+        salary: salary || null,
+        hire_date: currentDate
       }),
     });
 
@@ -89,8 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const jobTitle = document.getElementById('job_title').value;
       const email = document.getElementById('email').value;
       const teamId = document.getElementById('team').value;
+      const salary = document.getElementById('salary').value;
 
-      await postEmployee(firstName, lastName, jobTitle, email, teamId);
+      await postEmployee(firstName, lastName, jobTitle, email, teamId, salary);
       employeeForm.reset();
     });
   }
