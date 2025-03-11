@@ -1,5 +1,5 @@
 let allEmployees = [];
-const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
+const getEmployees = async (teamFilter = "All Teams", nameSearch = "", sortOption = "default") => {
   const resultElement = document.getElementById("result");
   resultElement.textContent = "Fetching Employees...";
 
@@ -34,6 +34,43 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
       );
     }
 
+    // Sort the employees based on the selected option
+    if (sortOption === "alphabetical") {
+      filteredEmployees.sort((a, b) => {
+        const nameA = `${a.first_name} ${a.last_name}`.toLowerCase();
+        const nameB = `${b.first_name} ${b.last_name}`.toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+    } else if (sortOption === "salaryHighest") {
+      filteredEmployees.sort((a, b) => {
+        // Convert salary strings to numbers for comparison
+        const salaryA = parseFloat(a.salary || 0);
+        const salaryB = parseFloat(b.salary || 0);
+        return salaryB - salaryA; // Sort high to low
+      });
+    } else if (sortOption === "salaryLowest") {
+      filteredEmployees.sort((a, b) => {
+        // Convert salary strings to numbers for comparison
+        const salaryA = parseFloat(a.salary || 0);
+        const salaryB = parseFloat(b.salary || 0);
+        return salaryA - salaryB; // Sort low to high
+      });
+    } else if (sortOption === "hireDate") {
+      filteredEmployees.sort((a, b) => {
+        // Convert hire_date strings to Date objects for comparison
+        const dateA = new Date(a.hire_date || '1970-01-01');
+        const dateB = new Date(b.hire_date || '1970-01-01');
+        return dateB - dateA; // Sort newest to oldest
+      });
+    } else if (sortOption === "hireDateOldest") {
+      filteredEmployees.sort((a, b) => {
+        // Convert hire_date strings to Date objects for comparison
+        const dateA = new Date(a.hire_date || '1970-01-01');
+        const dateB = new Date(b.hire_date || '1970-01-01');
+        return dateA - dateB; // Sort oldest to newest
+      });
+    }
+
     updateEmployeeCount(filteredEmployees.length, allEmployees.length);
 
     if (filteredEmployees.length === 0) {
@@ -54,6 +91,8 @@ const getEmployees = async (teamFilter = "All Teams", nameSearch = "") => {
         <p>${employee.job_title}</p>
         <p>${employee.email}</p>
         <p style="font-weight: bold">Team: ${employee.team_name || 'Not Assigned'}</p>
+        <p>Salary: £${employee.salary ? parseFloat(employee.salary).toLocaleString() : 'N/A'}</p>
+        <p>Hired: ${employee.hire_date ? new Date(employee.hire_date).toLocaleDateString('en-GB') : 'N/A'}</p>
         <div class="button-container">
           <a href="/PUT/editEmployees.html?id=${employee.id}" class="edit-link">
             <button class="edit-button">Edit</button>
@@ -95,7 +134,8 @@ const deleteEmployee = async (id) => {
 
     const teamSelect = document.getElementById("teams");
     const nameSearch = document.getElementById("nameSearch").value;
-    await getEmployees(teamSelect.value, nameSearch);
+    const sortOption = document.getElementById("sortOption").value;
+    await getEmployees(teamSelect.value, nameSearch, sortOption);
   } catch (error) {
     console.error('Delete failed:', error);
     alert(`Failed to delete employee: ${error.message}`);
@@ -105,7 +145,8 @@ const deleteEmployee = async (id) => {
 const applyFilters = () => {
   const teamFilter = document.getElementById("teams").value;
   const nameSearch = document.getElementById("nameSearch").value;
-  getEmployees(teamFilter, nameSearch);
+  const sortOption = document.getElementById("sortOption").value;
+  getEmployees(teamFilter, nameSearch, sortOption);
 };
 
 const initThemeToggle = () => {
@@ -144,6 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("nameSearch").addEventListener("input", () => {
+    applyFilters();
+  });
+
+  document.getElementById("sortOption").addEventListener("change", () => {
     applyFilters();
   });
 });

@@ -33,11 +33,21 @@
             <option value="Back End Development">Back End Development</option>
             <option value="Recruitment">Recruitment</option>
         </select>
+        <label for="sortOption">Sort by:</label>
+        <select name="sortOption" id="sortOption">
+            <option value="default">Default</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="salaryHighest">Salary (Highest First)</option>
+            <option value="salaryLowest">Salary (Lowest First)</option>
+            <option value="hireDate">Hire Date (Newest First)</option>
+            <option value="hireDateOldest">Hire Date (Oldest First)</option>
+        </select>
         <div class="button-container">
             <a href="POST/addEmployees.html" class="add-button">Add Employee</a>
             <div id="employee-count" class="employee-count"></div>
         </div>
     </div>
+
     <div id="result" class="get-result">Results will appear here...</div>
 </div>
 <script src="getclient.js"></script>

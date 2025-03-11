@@ -76,8 +76,8 @@ button {
   background: var(--container-bg);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem;
-  justify-content: flex-start; /* Changed from flex-end to flex-start */
+  gap: 20px; /* Increased gap for better spacing */
+  justify-content: center; /* Center the cards */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -116,16 +116,18 @@ button {
   padding: 20px;
   box-shadow: var(--card-shadow);
   transition: all 0.3s ease;
-  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  width: 200px;
-  flex: 0 0 200px;
+  width: 240px;      /* Increased from 200px to 240px */
+  height: 340px;
+  flex: 0 0 240px;   /* Also increased from 200px to 240px to match width */
   color: var(--text-color);
+  margin-bottom: 10px;
 }
+
 
 .employee-card:hover {
   transform: translateY(-4px);
@@ -138,6 +140,15 @@ button {
   flex-direction: column;
   align-items: flex-end;
   margin-left: auto;
+}
+
+.card-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
 }
 
 .employee-count {
@@ -160,14 +171,14 @@ button {
 }
 
 .employee-card h3 {
-  margin: 0 0 12px 0;
+  margin-top: 0;
   color: var(--text-color);
   font-size: 1.4rem;
   transition: color 0.3s ease;
 }
 
 .edit-button {
-  background-color: #56b335;
+  background-color: #7a7a7a;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -176,7 +187,7 @@ button {
 }
 
 .edit-button:hover {
-  background-color: #397822;
+  background-color: #939393;
 }
 
 .add-button:hover {
@@ -184,7 +195,7 @@ button {
 }
 
 .delete-button {
-  background-color: #e30000;
+  background-color: #cf0000;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -207,6 +218,16 @@ button {
   }
 }
 
+.employee-card .button-container {
+  flex-direction: row;
+  gap: 10px;
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+}
+
 .search-container {
   margin: 15px 0;
   display: flex;
@@ -226,21 +247,6 @@ button {
   background-color: var(--input-bg);
   color: var(--input-text);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.search-button {
-  padding: 8px 16px;
-  background-color: var(--search-button-bg);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: var(--search-button-hover);
 }
 
 #teams {
@@ -307,4 +313,13 @@ input:checked + .slider:before {
 
 .mode-icon {
   font-size: 18px;
+}
+
+#sortOption {
+  padding: 8px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
